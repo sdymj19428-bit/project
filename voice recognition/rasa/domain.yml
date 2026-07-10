@@ -1,0 +1,84 @@
+version: "3.1"
+
+# 1. 사용자가 할 수 있는 모든 의도 등록
+intents:
+  - greet
+  - shagal
+  - stop
+  - come_here
+  - dance
+  - go_home
+  - go_A_auto
+  - go_A_select
+  - go_B_auto
+  - go_B_select
+  - go_C_auto
+  - go_C_select
+
+# 2. 문장에서 뽑아낼 단어(엔티티) 등록
+entities:
+  - robot_name
+
+# 3. 뽑아낸 단어를 기억할 공간(슬롯) 등록
+slots:
+  robot_name:
+    type: text
+    mappings:
+    - type: from_entity
+      entity: robot_name
+
+# 4. 자비스가 할 대답들 등록 (robot_name 변수 활용 & 대문자 적용)
+responses:
+  utter_greet:
+  - text: "안녕"
+  
+  utter_shagal:
+  - text: "쌰갈!! 여러분 저 됐어요 ㅈ됐어요!!!"
+  
+  utter_stop:
+  # 이름이 없을 때(null)는 이름을 부르지 않습니다.
+  - condition:
+      - type: slot
+        name: robot_name
+        value: null
+    text: "null 정지"
+  # 이름이 있을 때는 이름을 부릅니다.
+  - text: "{robot_name} 정지"
+
+  utter_come_here:
+  - condition:
+      - type: slot
+        name: robot_name
+        value: null
+    text: "null 호출"
+  - text: "{robot_name} 호출"
+
+  utter_dance:
+  - text: "춤춘다"
+
+  utter_go_home:
+  - condition:
+      - type: slot
+        name: robot_name
+        value: null
+    text: "null 집"
+  - text: "{robot_name} 집"
+
+  # --- A, B, C 구역 이동 ---
+  utter_go_A_auto:
+  - text: "null A"
+  
+  utter_go_A_select:
+  - text: "{robot_name} A"
+
+  utter_go_B_auto:
+  - text: "null B"
+  
+  utter_go_B_select:
+  - text: "{robot_name} B"
+
+  utter_go_C_auto:
+  - text: "null C"
+  
+  utter_go_C_select:
+  - text: "{robot_name} C"

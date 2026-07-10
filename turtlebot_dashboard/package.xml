@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>turtlebot_dashboard</name>
+  <version>0.1.0</version>
+  <description>TurtleBot Dashboard</description>
+  <maintainer email="ubuntu@todo.todo">ubuntu</maintainer>
+  <license>MIT</license>
+  <depend>rclcpp</depend>
+  <depend>sensor_msgs</depend>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+</package>

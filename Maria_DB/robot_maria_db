@@ -1,0 +1,84 @@
+// [1] robot - 터틀봇 기본 정보
+Table robot {
+  robot_id    INT          [pk, increment]
+  robot_name  VARCHAR(50)  [not null, note: 'ex) 알렉사, 철수, 길동, 영희']
+  robot_type  ENUM('master','slave_pick','slave_box','slave_trash') [not null]
+  ip_address  VARCHAR(20)  [note: 'ROS2 노드 IP']
+  created_at  TIMESTAMP    [default: `CURRENT_TIMESTAMP`]
+}
+
+// [2] robot_status_log - 터틀봇 실시간 상태 로그
+Table robot_status_log {
+  log_id        BIGINT  [pk, increment]
+  robot_id      INT     [not null, ref: > robot.robot_id]
+  status        ENUM('idle','moving','waiting','working','charging','error') [not null]
+  pos_x         FLOAT   [note: 'map 좌표 x (meter)']
+  pos_y         FLOAT   [note: 'map 좌표 y (meter)']
+  orientation_z FLOAT   [note: 'quaternion z']
+  orientation_w FLOAT   [note: 'quaternion w']
+  battery_pct   FLOAT   [note: '배터리 잔량 0.0~100.0']
+  logged_at     TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+// [3] voice_command_log - 음성 명령 기록
+Table voice_command_log {
+  cmd_id          BIGINT       [pk, increment]
+  target_robot_id INT          [ref: > robot.robot_id]
+  parsed_action   ENUM(
+    'move','stop','fetch_box','swap_cart','trash_collect','return_base','custom',
+    'come_here','go_home',
+    'go_A_auto','go_A_select',
+    'go_B_auto','go_B_select',
+    'go_C_auto','go_C_select',
+    'greet','dance','shagal'
+  ) [not null]
+  parsed_target   VARCHAR(100) [note: '파싱된 대상 ex) 철수, A구역으로']
+  success         BOOLEAN      [default: false]
+  issued_at       TIMESTAMP    [default: `CURRENT_TIMESTAMP`]
+}
+
+// [4] robot_action_log - 동작 기록
+Table robot_action_log {
+  action_id     BIGINT  [pk, increment]
+  robot_id      INT     [not null, ref: > robot.robot_id]
+  cmd_id        BIGINT  [ref: > voice_command_log.cmd_id]
+  action_type   ENUM(
+    'move_to','pick_assist','box_deliver',
+    'trash_collect','return_base','standby','stop'
+  ) [not null]
+  location_from VARCHAR(50) [note: '출발 위치 코드']
+  location_to   VARCHAR(50) [note: '목적 위치 코드 ex) A, B, C, home']
+  result        ENUM('success','failed','cancelled')
+  note          VARCHAR(255)
+}
+
+// [5] picking_event - 피킹 이벤트
+Table picking_event {
+  event_id          BIGINT  [pk, increment]
+  assigned_robot_id INT     [ref: > robot.robot_id]
+  location_code     VARCHAR(50) [note: '창고 위치 코드 ex) A-03-2']
+  event_type        ENUM('pick_start','pick_done','cart_full','cart_swap','trash_collect','return_to_base') [not null]
+  note              VARCHAR(255)
+  created_at        TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}
+
+// [6] sensor_data - 환경 센서 데이터
+// Table sensor_data {
+//   data_id       BIGINT  [pk, increment]
+//   robot_id      INT     [not null, ref: > robot.robot_id]
+//   temperature   FLOAT   [note: '온도 (°C)']
+//   humidity      FLOAT   [note: '습도 (%)']
+//   obstacle_dist FLOAT   [note: '전방 장애물 거리 (m)']
+//   light_lux     FLOAT   [note: '조도 (lux)']
+// }
+
+// [7] alert_log - 경고 로그
+Table alert_log {
+  alert_id     BIGINT  [pk, increment]
+  robot_id     INT     [ref: > robot.robot_id]
+  severity     ENUM('info','warning','critical') [not null]
+  alert_type   ENUM('low_battery','obstacle','comm_lost','cart_full','task_timeout') [not null]
+  message      VARCHAR(500)
+  resolved     BOOLEAN   [default: false]
+  triggered_at TIMESTAMP [default: `CURRENT_TIMESTAMP`]
+}

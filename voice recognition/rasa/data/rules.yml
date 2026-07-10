@@ -1,0 +1,56 @@
+version: "3.1"
+rules:
+- rule: 인사하기
+  steps:
+  - intent: greet
+  - action: utter_greet
+  
+- rule: 쌰갈
+  steps:
+  - intent: shagal
+  - action: utter_shagal
+
+- rule: 멈추기
+  steps:
+  - intent: stop
+  - action: utter_stop
+  
+- rule: 호출
+  steps:
+  - intent: come_here
+  - action: utter_come_here
+  
+- rule: 댄스
+  steps:
+  - intent: dance
+  - action: utter_dance
+
+- rule: 집으로_가기
+  steps:
+  - intent: go_home
+  - action: utter_go_home
+  
+- rule: 에이로_auto
+  steps:
+  - intent: go_A_auto
+  - action: utter_go_A_auto
+- rule: 에이로_select
+  steps:
+  - intent: go_A_select
+  - action: utter_go_A_select
+- rule: 비로_auto
+  steps:
+  - intent: go_B_auto
+  - action: utter_go_B_auto
+- rule: 비로_select
+  steps:
+  - intent: go_B_select
+  - action: utter_go_B_select
+- rule: 씨로_auto
+  steps:
+  - intent: go_C_auto
+  - action: utter_go_C_auto
+- rule: 씨로_select
+  steps:
+  - intent: go_C_select
+  - action: utter_go_C_select

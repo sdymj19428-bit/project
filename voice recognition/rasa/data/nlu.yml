@@ -1,0 +1,147 @@
+version: "3.1"
+
+nlu:
+
+- regex: robot_name
+  examples: |
+    - 알렉사
+    - 철수
+    - 영희
+    - 길동
+    
+- intent: greet
+  examples: |
+    - 안녕
+    - 안녕하세요
+    - 알렉사
+    - 반가워
+    
+- intent: shagal
+  examples: |
+    - 샤갈
+    - 싸갈
+    - 사갈
+
+- intent: dance
+  examples: |
+    - 댄스
+    - 댄스파티
+    - 춤춰
+    - 흥이 넘친다
+
+- intent: stop
+  examples: |
+    - [철수](robot_name)멈춰
+    - [철수](robot_name)위험해
+    - [철수](robot_name)스탑
+    - [철수](robot_name)정지
+    - [철수](robot_name)긴급정지
+    - [영희](robot_name)멈춰
+    - [영희](robot_name)위험해
+    - [영희](robot_name)스탑
+    - [영희](robot_name)정지
+    - [영희](robot_name)긴급정지
+    - [길동](robot_name)멈춰
+    - [길동](robot_name)위험해
+    - [길동](robot_name)스탑
+    - [길동](robot_name)정지
+    - [길동](robot_name)긴급정지
+
+- intent: come_here
+  examples: |
+    - [철수](robot_name)이리와
+    - [철수](robot_name)호출
+    - [철수](robot_name)너의 도움이 필요해
+    - [철수](robot_name)상자 가져와
+    - [영희](robot_name)이리와
+    - [영희](robot_name)호출
+    - [영희](robot_name)너의 도움이 필요해
+    - [영희](robot_name)상자 가져와
+    - [길동](robot_name)이리와
+    - [길동](robot_name)호출
+    - [길동](robot_name)너의 도움이 필요해
+    - [길동](robot_name)상자 가져와
+    - 호출
+    - 아무나 와
+    - 로봇 불러줘
+    - 불러줘
+    - 상자 가져와
+ 
+- intent: go_home
+  examples: |
+    - [철수](robot_name)야 집으로 가
+    - [철수](robot_name)야  집가
+    - [철수](robot_name) 집으로
+    - [철수](robot_name) 집
+    - [철수](robot_name) 홈
+    - [철수](robot_name) 고 홈
+    - [영희](robot_name)야 집으로 가
+    - [영희](robot_name)야  집가
+    - [영희](robot_name) 집으로
+    - [영희](robot_name) 집
+    - [영희](robot_name) 홈
+    - [영희](robot_name) 고 홈
+    - [길동](robot_name)야 집으로 가
+    - [길동](robot_name)야  집가
+    - [길동](robot_name) 집으로
+    - [길동](robot_name) 집
+    - [길동](robot_name) 홈
+    - [길동](robot_name) 고 홈
+    
+- intent: go_A_auto
+  examples: |
+    - 야 에이로 가
+    - 에이로 가
+    - 에이구역으로 가
+    - 에이구역으로
+    
+- intent: go_A_select
+  examples: |
+    - [철수](robot_name)야 에이로 가
+    - [철수](robot_name)야 에이구역으로 가
+    - [철수](robot_name) 에이구역으로
+    - [영희](robot_name)야 에이로 가
+    - [영희](robot_name)야 에이구역으로 가
+    - [영희](robot_name) 에이구역으로
+    - [길동](robot_name)야 에이로 가
+    - [길동](robot_name)야 에이구역으로 가
+    - [길동](robot_name) 에이구역으로
+    
+- intent: go_B_auto
+  examples: |
+    - 야 비로 가
+    - 비로 가
+    - 비구역으로 가
+    - 비구역으로
+    
+- intent: go_B_select
+  examples: |
+    - [철수](robot_name)야 비로 가
+    - [철수](robot_name)야 비구역으로 가
+    - [철수](robot_name) 비구역으로
+    - [영희](robot_name)야 비로 가
+    - [영희](robot_name)야 비구역으로 가
+    - [영희](robot_name) 비구역으로
+    - [길동](robot_name)야 비로 가
+    - [길동](robot_name)야 비구역으로 가
+    - [길동](robot_name) 비구역으로
+ 
+- intent: go_C_auto
+  examples: |
+    - 야 씨로 가
+    - 씨로 가
+    - 씨구역으로 가
+    - 씨구역으로
+    
+- intent: go_C_select
+  examples: |
+    - [철수](robot_name)야 씨로 가
+    - [철수](robot_name)야 씨구역으로 가
+    - [철수](robot_name) 씨구역으로
+    - [영희](robot_name)야 씨로 가
+    - [영희](robot_name)야 씨구역으로 가
+    - [영희](robot_name) 씨구역으로
+    - [길동](robot_name)야 씨로 가
+    - [길동](robot_name)야 씨구역으로 가
+    - [길동](robot_name) 씨구역으로
+    

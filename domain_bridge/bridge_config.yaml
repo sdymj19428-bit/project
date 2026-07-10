@@ -1,0 +1,85 @@
+name: my_bridge
+from_domain: 25
+to_domain: 24
+topics:
+  battery_state:
+    type: sensor_msgs/msg/BatteryState
+    remap: /robot1/battery_state
+  amcl_pose:
+    type: geometry_msgs/msg/PoseWithCovarianceStamped
+    remap: /robot1/amcl_pose
+  battery_state:
+    from_domain: 26
+    to_domain: 24
+    type: sensor_msgs/msg/BatteryState
+    remap: /robot2/battery_state
+  amcl_pose:
+    from_domain: 26
+    to_domain: 24
+    type: geometry_msgs/msg/PoseWithCovarianceStamped
+    remap: /robot2/amcl_pose
+  robot_action_ok:
+    type: std_msgs/msg/Bool
+    from_domain: 26
+    to_domain: 24
+    remap: /robot2/status
+  robot2/nav_cmd:
+    type: geometry_msgs/msg/PoseStamped
+    from_domain: 24
+    to_domain: 26
+    remap: /nav_cmd
+  robot2/stop:
+    type: std_msgs/msg/Bool
+    from_domain: 24
+    to_domain: 26
+    remap: /stop
+  battery_state:
+    from_domain: 27
+    to_domain: 24
+    type: sensor_msgs/msg/BatteryState
+    remap: /robot3/battery_state
+  amcl_pose:
+    from_domain: 27
+    to_domain: 24
+    type: geometry_msgs/msg/PoseWithCovarianceStamped
+    remap: /robot3/amcl_pose
+  robot_action_ok:
+    type: std_msgs/msg/Bool
+    from_domain: 27
+    to_domain: 24
+    remap: /robot3/status
+  robot3/nav_cmd:
+    type: geometry_msgs/msg/PoseStamped
+    from_domain: 24
+    to_domain: 27
+    remap: /nav_cmd
+  robot3/stop:
+    type: std_msgs/msg/Bool
+    from_domain: 24
+    to_domain: 27
+    remap: /stop
+  battery_state:
+    from_domain: 28
+    to_domain: 24
+    type: sensor_msgs/msg/BatteryState
+    remap: /robot4/battery_state
+  amcl_pose:
+    from_domain: 28
+    to_domain: 24
+    type: geometry_msgs/msg/PoseWithCovarianceStamped
+    remap: /robot4/amcl_pose
+  robot_action_ok:
+    type: std_msgs/msg/Bool
+    from_domain: 28
+    to_domain: 24
+    remap: /robot4/status
+  robot4/nav_cmd:
+    type: geometry_msgs/msg/PoseStamped
+    from_domain: 24
+    to_domain: 28
+    remap: /nav_cmd
+  robot4/stop:
+    type: std_msgs/msg/Bool
+    from_domain: 24
+    to_domain: 28
+    remap: /stop
